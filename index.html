@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Security Vulnerability Assessment System</title>
+</head>
+
+<body style="font-family:Arial,sans-serif;background:#0d1117;color:white;text-align:center;">
+
+    <div style="padding:30px;">
+
+        <h1 style="color:#00bfff;">
+            🛡 Cyber Security Vulnerability Assessment System
+        </h1>
+
+        <div style="
+            width:70%;
+            margin:auto;
+            background:#161b22;
+            padding:15px;
+            border-radius:10px;
+            margin-bottom:20px;">
+
+            <h3 style="color:#58a6ff;">Project Overview</h3>
+
+            <p>
+                This Vulnerability Assessment System uses Python, Flask and Nmap
+                to detect open ports, assess risk levels and provide security insights.
+            </p>
+
+        </div>
+
+        <p style="color:#c9d1d9;">
+            Scan a target IP address and identify open ports with risk levels.
+        </p>
+
+        <form action="/scan" method="post">
+
+            <input
+                type="text"
+                name="ip"
+                placeholder="Enter IP Address"
+                required
+                style="
+                padding:10px;
+                width:250px;
+                border-radius:5px;
+                border:none;">
+
+            <button
+                type="submit"
+                style="
+                padding:10px 20px;
+                background:#238636;
+                color:white;
+                border:none;
+                border-radius:5px;
+                cursor:pointer;">
+
+                🔍 Scan
+
+            </button>
+
+        </form>
+
+        {% if results %}
+
+        <br>
+
+        <div style="
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;">
+
+            <div style="
+                background:#238636;
+                padding:15px;
+                border-radius:10px;
+                width:180px;">
+
+                <h2>{{ results|length }}</h2>
+                <p>Ports Detected</p>
+
+            </div>
+
+            <div style="
+                background:#1f6feb;
+                padding:15px;
+                border-radius:10px;
+                width:180px;">
+
+                <h2>ACTIVE</h2>
+                <p>Scanner Status</p>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div style="
+            width:60%;
+            margin:auto;
+            background:#161b22;
+            padding:15px;
+            border-radius:10px;">
+
+            <h3 style="color:#58a6ff;">📊 Scan Summary</h3>
+
+            <p>
+                Total Ports Detected:
+                <strong>{{ results|length }}</strong>
+            </p>
+
+        </div>
+
+        <h2 style="color:#ff7b72;margin-top:25px;">
+            📋 Scan Results
+        </h2>
+
+        <ul style="list-style:none;padding:0;">
+
+            {% for result in results %}
+
+            <li style="
+                width:60%;
+                margin:10px auto;
+                padding:15px;
+                background:#161b22;
+                border-radius:10px;
+                font-size:18px;">
+
+                {% if "HIGH RISK" in result %}
+                    <span style="color:#ff4d4d;font-weight:bold;">
+                        {{ result }}
+                    </span>
+
+                {% elif "MEDIUM RISK" in result %}
+                    <span style="color:#ffa500;font-weight:bold;">
+                        {{ result }}
+                    </span>
+
+                {% else %}
+                    <span style="color:#3fb950;font-weight:bold;">
+                        {{ result }}
+                    </span>
+                {% endif %}
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <div style="
+            width:60%;
+            margin:auto;
+            background:#161b22;
+            padding:20px;
+            border-radius:10px;">
+
+            <h3 style="color:#58a6ff;">🚀 Features</h3>
+
+            <ul style="
+                text-align:left;
+                display:inline-block;
+                color:#c9d1d9;">
+
+                <li>Port Scanning using Nmap</li>
+                <li>Open Port Detection</li>
+                <li>Risk Level Classification</li>
+                <li>Cyber Security Assessment</li>
+                <li>Real-Time Scan Results</li>
+                <li>Web-Based Dashboard</li>
+
+            </ul>
+
+        </div>
+
+        {% endif %}
+
+        <footer style="
+            margin-top:40px;
+            color:#8b949e;">
+
+            <hr>
+
+            <p><strong>Developed by Debasish Biswal</strong></p>
+
+            <p>Master of Computer Applications (MCA)</p>
+
+            <p>Cyber Security Vulnerability Assessment System</p>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>
